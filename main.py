@@ -22,7 +22,6 @@ def main():
     print("Welcome to the assistant bot!")
     book = AddressBook(get_current_book())
     while True:
-        save_current_book(book)
         user_input = input("Enter a command: ")
         command, *args = parse_input(user_input)
 
@@ -52,7 +51,7 @@ def main():
             print(show_coming_birthdays(book, *args))
         else:
             print("Invalid command.")
-
+        save_current_book(book)
 
 if __name__ == "__main__":
     main()

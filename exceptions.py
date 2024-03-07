@@ -2,8 +2,10 @@
 
 
 class PhoneNotCorrectError(Exception):
-    """Phone not mathch error"""
+    """Phone not match error"""
 
+class PhoneNotGiven(Exception):
+    """Phone number not given"""
 
 class ContactAlredyExist(Exception):
     """Contac alredy exist in address book"""

@@ -3,6 +3,7 @@
 import pickle
 from exceptions import (
     PhoneNotCorrectError,
+    PhoneNotGiven,
     ContactAlredyExist,
     ContactNotFound,
     BirthDayNotCorrect,
@@ -31,7 +32,9 @@ def input_error(func):
         except ContactNotFound:
             return "Cannot not found."
         except BirthDayNotCorrect:
-            return "Give me correct format date DD.MM.YYYY"
+            return "Give me correct date format DD.MM.YYYY"
+        except PhoneNotGiven:
+            return "Give me new telephone number"
 
     return inner
 
@@ -99,11 +102,16 @@ def show_phone(book, name):
 
 
 @input_error
-def change_record_phone(book, name, phone, new_phone):
+def change_record_phone(book, name, phone, new_phone=None):
     """Change phone for record"""
     record = book.find(name)
     if not record:
         raise ContactNotFound
+    if not new_phone and len(record.phones) > 1:
+        raise PhoneNotGiven("Give me new telephone number")
+    if len(record.phones) == 1:
+        new_phone = phone
+        phone = str(record.phones[0])
     record.edit_phone(phone, new_phone)
     return "Phone has been updated."
 
