@@ -111,7 +111,7 @@ def change_record_phone(book, name, phone, new_phone=None):
         raise PhoneNotGiven("Give me new telephone number")
     if len(record.phones) == 1:
         new_phone = phone
-        phone = str(record.phones[0])
+        phone = record.phones[0].value
     record.edit_phone(phone, new_phone)
     return "Phone has been updated."
 
