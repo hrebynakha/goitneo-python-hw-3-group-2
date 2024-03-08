@@ -165,7 +165,7 @@ def show_birthday(book, name):
         record.birthday if record.birthday else "Birthday not defined for this contact"
     )
 
-
+@input_error
 def show_coming_birthdays(
     book,
 ):

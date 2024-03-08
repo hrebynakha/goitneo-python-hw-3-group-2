@@ -23,7 +23,7 @@ class Birthday(Field):
     """Birthday class"""
 
     def __init__(self, date):
-        __date = None
+        self.__date = None
         self.date = date
         super().__init__(date)
 
@@ -120,6 +120,8 @@ class AddressBook(UserDict):
         days_of_birthday = defaultdict(list)
         today = datetime.today().date()
         for _, user in self.data.items():
+            if not user.birthday:
+                continue
             name = user.name.value
             birthday = user.birthday.date
             birthday_this_year = birthday.replace(year=today.year)
